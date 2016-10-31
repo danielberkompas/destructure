@@ -1,4 +1,6 @@
 # Destructure
+[![Hex.pm](https://img.shields.io/hexpm/v/destructure.svg)](https://hex.pm/packages/destructure)
+[![Build Status](https://travis-ci.org/danielberkompas/destructure.svg?branch=master)](https://travis-ci.org/danielberkompas/destructure)
 
 Adds Javascript-style destructuring to Elixir. Instead of:
 
@@ -18,7 +20,7 @@ def full_name(d%{first_name, last_name}) do
 end
 ```
 
-See the [Hex Documentation]() for more details.
+See the [Hex Documentation](https://hexdocs.pm/destructure) for more details.
 
 ## Installation
 
