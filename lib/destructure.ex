@@ -37,6 +37,12 @@ defmodule Destructure do
       ...> {first, last}
       {"Daniel", "Berkompas"}
 
+  With multiple keys and custom variable naming:
+
+      iex> d(%{first, last, email: mail}) = %{first: "Daniel", last: "Berkompas", email: "top@secret.com"}
+      ...> {first, last, mail}
+      {"Daniel", "Berkompas", "top@secret.com"}
+
   For keyword lists:
 
       iex> d({name}) = [name: "Daniel"]
@@ -48,6 +54,12 @@ defmodule Destructure do
       iex> d({first, last}) = [first: "Daniel", last: "Berkompas"]
       ...> {first, last}
       {"Daniel", "Berkompas"}
+
+  With multiple keys and custom assignment:
+
+      iex> d({first, last, email: mail}) = [first: "Daniel", last: "Berkompas", email: "top@secret.com"]
+      ...> {first, last, mail}
+      {"Daniel", "Berkompas", "top@secret.com"}
 
   And in function definitions:
 
@@ -80,5 +92,11 @@ defmodule Destructure do
 
   defp pattern({key, _, _} = variable) do
     {key, variable}
+  end
+  defp pattern([arg]) do
+    arg
+  end
+  defp pattern(other) do
+    other
   end
 end
