@@ -20,6 +20,17 @@ def full_name(d%{first_name, last_name}) do
 end
 ```
 
+It also works in case statements, like this:
+
+```elixir
+case post(url, data) do
+  {:ok, d%{body}} -> # instead of {:ok, %{body: body}}
+    # use body variable
+  _other ->
+    # ...
+end
+```
+
 See the [Hex Documentation](https://hexdocs.pm/destructure) for more details.
 
 ## Installation
