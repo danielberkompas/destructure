@@ -31,6 +31,12 @@ case post(url, data) do
 end
 ```
 
+Unlike Javascript, you can still bind custom variables:
+
+```elixir
+d(%{first, last, email: mail}) = %{...}
+```
+
 See the [Hex Documentation](https://hexdocs.pm/destructure) for more details.
 
 ## Installation
@@ -39,7 +45,7 @@ See the [Hex Documentation](https://hexdocs.pm/destructure) for more details.
 
     ```elixir
     def deps do
-      [{:destructure, "~> 0.1.0"}]
+      [{:destructure, "~> 0.1.1"}]
     end
     ```
 
