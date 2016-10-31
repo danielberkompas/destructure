@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/danielberkompas/destructure/tree/HEAD)
-
-[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.0...HEAD)
+## [v0.1.1](https://github.com/danielberkompas/destructure/tree/v0.1.1) (2016-10-31)
+[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.0...v0.1.1)
 
 **Merged pull requests:**
 
