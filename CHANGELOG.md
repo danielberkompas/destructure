@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased](https://github.com/danielberkompas/destructure/tree/HEAD)
+
+[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.0...HEAD)
+
+**Merged pull requests:**
+
+- Add support for custom variables in patterns [\#1](https://github.com/danielberkompas/destructure/pull/1) ([danielberkompas](https://github.com/danielberkompas))
+
 ## [v0.1.0](https://github.com/danielberkompas/destructure/tree/v0.1.0) (2016-10-31)
 
 
