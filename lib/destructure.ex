@@ -5,7 +5,7 @@ defmodule Destructure do
   """
 
   @doc """
-  Easy destructuring of maps and keyword lists, with atom keys only. String keys
+  Easy destructuring of maps, structs, and keyword lists, with atom keys only. String keys
   are not supported because Elixir raises a `SyntaxError` on syntax like
   `%{"name"}`.
 
@@ -77,13 +77,15 @@ defmodule Destructure do
   defmacro d({:%{}, context, args}) do
     {:%{}, context, Enum.map(args, &pattern/1)}
   end
-
+  # Handle structs, including ones with multiple keys
+  defmacro d({:%, _, [{:__aliases__, _, _}, {:%{}, context, args}]}) do
+    {:%{}, context, Enum.map(args, &pattern/1)}
+  end
   # Handle 1 and 3+ element tuples
   # {:{}, [], [{:variable_name, [], Elixir}]}
   defmacro d({:{}, _, args}) do
     Enum.map(args, &pattern/1)
   end
-
   # Handle the special case of two-element tuples, whose ASTs look like
   # {{:first, [], Elixir}, {:last, [], Elixir}}
   defmacro d({first, second}) do
