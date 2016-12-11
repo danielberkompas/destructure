@@ -5,9 +5,10 @@ defmodule Destructure do
   """
 
   @doc """
-  Easy destructuring of maps, structs, and keyword lists, with atom keys only. String keys
-  are not supported because Elixir raises a `SyntaxError` on syntax like
-  `%{"name"}`.
+  Easy destructuring of maps, structs, and keyword lists, with atom keys only.
+  String keys are not supported because Elixir raises a `SyntaxError` on syntax
+  like `%{"name"}`. Optional key also need to be placed at the last for the same
+  reason with the string key.
 
   ## Examples
 
@@ -20,8 +21,7 @@ defmodule Destructure do
   Or in case/for/with statements.
 
       iex> case %{name: "Mike"} do
-      ...>   d%{name} ->
-      ...>     name
+      ...>   d%{name} -> name
       ...> end
       "Mike"
 
@@ -42,6 +42,24 @@ defmodule Destructure do
       iex> d(%{first, last, email: mail}) = %{first: "Daniel", last: "Berkompas", email: "top@secret.com"}
       ...> {first, last, mail}
       {"Daniel", "Berkompas", "top@secret.com"}
+
+  For structs:
+
+      iex> d(%Person{name}) = %Person{name: "Daniel Berkompas"}
+      ...> name
+      "Daniel Berkompas"
+
+  With multiple keys:
+
+      iex> d(%Person{name, email}) = %Person{name: "Daniel Berkompas", email: "top@secret.com"}
+      ...> {name, email}
+      {"Daniel Berkompas", "top@secret.com"}
+
+  With multiple keys and custom variable naming:
+
+      iex> d(%Person{name, email: mail}) = %Person{name: "Daniel Berkompas", email: "top@secret.com"}
+      ...> {name, mail}
+      {"Daniel Berkompas", "top@secret.com"}
 
   For keyword lists:
 
@@ -77,15 +95,21 @@ defmodule Destructure do
   defmacro d({:%{}, context, args}) do
     {:%{}, context, Enum.map(args, &pattern/1)}
   end
+
   # Handle structs, including ones with multiple keys
+  # {:%, [],
+  #  [{:__aliases__, [alias: false], [:Namespace]},
+  #   {:%{}, [], [{:first, [], Elixir}, {:second, [], Elixir}]}]}
   defmacro d({:%, _, [{:__aliases__, _, _}, {:%{}, context, args}]}) do
     {:%{}, context, Enum.map(args, &pattern/1)}
   end
+
   # Handle 1 and 3+ element tuples
-  # {:{}, [], [{:variable_name, [], Elixir}]}
+  # {:{}, [], [{:first, [], Elixir}]}
   defmacro d({:{}, _, args}) do
     Enum.map(args, &pattern/1)
   end
+
   # Handle the special case of two-element tuples, whose ASTs look like
   # {{:first, [], Elixir}, {:last, [], Elixir}}
   defmacro d({first, second}) do
