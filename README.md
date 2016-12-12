@@ -20,6 +20,15 @@ def full_name(d%{first_name, last_name}) do
 end
 ```
 
+Or with structs:
+```elixir
+import Destructure
+
+def full_name(d%Person{first_name, last_name}) do
+  "#{first_name} #{last_name}"
+end
+```
+
 It also works in case statements, like this:
 
 ```elixir
