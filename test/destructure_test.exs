@@ -14,8 +14,10 @@ defmodule DestructureTest do
   doctest Destructure
 
   describe "structs" do
-    test "can't match with different structs" do
-      refute d(%People{}) == %Person{}
+    test "raise MatchError on match with different structs" do
+      assert_raise MatchError, fn ->
+        d(%People{}) = %Person{}
+      end
     end
 
     test "can bind struct alias to a variable" do
