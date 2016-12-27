@@ -11,8 +11,6 @@ defmodule DestructureTest do
     defstruct [:people]
   end
 
-  alias __MODULE__.Person
-
   doctest Destructure
 
   describe "structs" do
