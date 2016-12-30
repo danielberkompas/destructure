@@ -100,8 +100,8 @@ defmodule Destructure do
   # {:%, [],
   #  [{:__aliases__, [alias: false], [:Namespace]},
   #   {:%{}, [], [{:first, [], Elixir}, {:second, [], Elixir}]}]}
-  defmacro d({:%, _, [{:__aliases__, _, _}, {:%{}, context, args}]}) do
-    {:%{}, context, Enum.map(args, &pattern/1)}
+  defmacro d({:%, x_context, [namespace, {:%{}, y_context, args}]}) do
+    {:%, x_context, [namespace, {:%{}, y_context, Enum.map(args, &pattern/1)}]}
   end
 
   # Handle 1 and 3+ element tuples
