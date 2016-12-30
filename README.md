@@ -54,7 +54,7 @@ See the [Hex Documentation](https://hexdocs.pm/destructure) for more details.
 
     ```elixir
     def deps do
-      [{:destructure, "~> 0.1.1"}]
+      [{:destructure, "~> 0.2.2"}]
     end
     ```
 
