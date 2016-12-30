@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased](https://github.com/danielberkompas/destructure/tree/HEAD)
+
+[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.1...HEAD)
+
+**Closed issues:**
+
+- Destructure Structures [\#2](https://github.com/danielberkompas/destructure/issues/2)
+
+**Merged pull requests:**
+
+- Fix destructure structs implementation [\#4](https://github.com/danielberkompas/destructure/pull/4) ([muhifauzan](https://github.com/muhifauzan))
+- Add destructure structs feature [\#3](https://github.com/danielberkompas/destructure/pull/3) ([muhifauzan](https://github.com/muhifauzan))
+
 ## [v0.1.1](https://github.com/danielberkompas/destructure/tree/v0.1.1) (2016-10-31)
 [Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.0...v0.1.1)
 
