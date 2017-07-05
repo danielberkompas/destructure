@@ -52,16 +52,16 @@ See the [Hex Documentation](https://hexdocs.pm/destructure) for more details.
 
   1. Add `destructure` to your list of dependencies in `mix.exs`:
 
-    ```elixir
-    def deps do
-      [{:destructure, "~> 0.2.2"}]
-    end
-    ```
+        ```elixir
+        def deps do
+          [{:destructure, "~> 0.2.2"}]
+        end
+        ```
 
   2. Ensure `destructure` is started before your application:
 
-    ```elixir
-    def application do
-      [applications: [:destructure]]
-    end
-    ```
+        ```elixir
+        def application do
+          [applications: [:destructure]]
+        end
+        ```
