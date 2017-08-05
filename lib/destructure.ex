@@ -5,7 +5,7 @@ defmodule Destructure do
   """
 
   @doc """
-  Easy destructuring of maps, structs, and keyword lists, with atom keys only.
+  Easy destructuring of `map`, `structs`, and `keyword`, with atom keys only.
   String keys are not supported because Elixir raises a `SyntaxError` on syntax
   like `%{"name"}`. Optional key also need to be placed at the last for the same
   reason with the string key.
@@ -63,21 +63,21 @@ defmodule Destructure do
 
   For keyword lists:
 
-      iex> d({name}) = [name: "Daniel"]
+      iex> d([name]) = [name: "Daniel"]
       ...> name
       "Daniel"
 
   With multiple keys:
 
-      iex> d({first, last}) = [first: "Daniel", last: "Berkompas"]
-      ...> {first, last}
-      {"Daniel", "Berkompas"}
+      iex> d([first, last]) = [first: "Daniel", last: "Berkompas"]
+      ...> [first, last]
+      ["Daniel", "Berkompas"]
 
   With multiple keys and custom assignment:
 
-      iex> d({first, last, email: mail}) = [first: "Daniel", last: "Berkompas", email: "top@secret.com"]
-      ...> {first, last, mail}
-      {"Daniel", "Berkompas", "top@secret.com"}
+      iex> d([first, last, email: mail]) = [first: "Daniel", last: "Berkompas", email: "top@secret.com"]
+      ...> [first, last, mail]
+      ["Daniel", "Berkompas", "top@secret.com"]
 
   And in function definitions:
 
@@ -114,6 +114,11 @@ defmodule Destructure do
   # {{:first, [], Elixir}, {:last, [], Elixir}}
   defmacro d({first, second}) do
     [pattern(first), pattern(second)]
+  end
+
+  # Handle keyword list using square bracket
+  defmacro d(list) when is_list(list) do
+    Enum.map(list, &pattern/1)
   end
 
   defp pattern({key, _, _} = variable) do
