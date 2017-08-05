@@ -59,6 +59,6 @@ Add `destructure` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:destructure, "~> 0.2.2"}]
+  [{:destructure, "~> 0.2.3"}]
 end
 ```
