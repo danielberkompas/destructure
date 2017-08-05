@@ -2,7 +2,18 @@
 
 ## [Unreleased](https://github.com/danielberkompas/destructure/tree/HEAD)
 
-[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.1...HEAD)
+[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.2.2...HEAD)
+
+**Closed issues:**
+
+- Dynamic list of arguments in function definition [\#5](https://github.com/danielberkompas/destructure/issues/5)
+
+**Merged pull requests:**
+
+- Add support for keyword list using square brackets [\#6](https://github.com/danielberkompas/destructure/pull/6) ([muhifauzan](https://github.com/muhifauzan))
+
+## [v0.2.2](https://github.com/danielberkompas/destructure/tree/v0.2.2) (2016-12-30)
+[Full Changelog](https://github.com/danielberkompas/destructure/compare/v0.1.1...v0.2.2)
 
 **Closed issues:**
 
