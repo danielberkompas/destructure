@@ -43,19 +43,19 @@ defmodule Destructure do
 
   For Maps with String Keys:
 
-      iex> d(s%{name}) = %{"name" => "Daniel Berkompas"}
+      iex> s(%{name}) = %{"name" => "Daniel Berkompas"}
       ...> name
       "Daniel Berkompas"
 
   With multiple keys:
 
-      iex> d(s%{name, email}) = %{"name" => "Daniel Berkompas", "email" => "top@secret.com"}
+      iex> s(%{name, email}) = %{"name" => "Daniel Berkompas", "email" => "top@secret.com"}
       ...> {name, email}
       {"Daniel Berkompas", "top@secret.com"}
 
   With multiple keys and custom variable naming:
 
-      iex> d(s%{name, "email" => mail}) = %{"name" => "Daniel Berkompas", "email" => "top@secret.com"}
+      iex> s(%{name, "email" => mail}) = %{"name" => "Daniel Berkompas", "email" => "top@secret.com"}
       ...> {name, mail}
       {"Daniel Berkompas", "top@secret.com"}
 
@@ -113,12 +113,6 @@ defmodule Destructure do
     {:%{}, context, Enum.map(args, &pattern/1)}
   end
 
-  # Handle string maps, including ones with multiple keys
-  # {:s, [], [{:%{}, [], [{:stuff, [], Elixir}, {:things, [], Elixir}]}]}
-  defmacro d({:s, _, [{:%{}, context, args}]}) do
-    {:%{}, context, Enum.map(args, &s_pattern/1)}
-  end
-
   # Handle structs, including ones with multiple keys
   # {:%, [],
   #  [{:__aliases__, [alias: false], [:Namespace]},
@@ -142,6 +136,12 @@ defmodule Destructure do
   # Handle keyword list using square bracket
   defmacro d(list) when is_list(list) do
     Enum.map(list, &pattern/1)
+  end
+
+  # Handle string maps, including ones with multiple keys
+  # {:%{}, [], [{:stuff, [], Elixir}, {:things, [], Elixir}]}
+  defmacro s({:%{}, context, args}) do
+    {:%{}, context, Enum.map(args, &s_pattern/1)}
   end
 
   defp s_pattern({key, _, _} = variable) do
