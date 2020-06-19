@@ -2,16 +2,18 @@ defmodule Destructure.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :destructure,
-     version: "0.2.3",
-     elixir: "~> 1.3",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     source_url: "https://github.com/danielberkompas/destructure",
-     description: "Javascript-style destructuring for Elixir",
-     package: package(),
-     docs: docs(),
-     deps: deps()]
+    [
+      app: :destructure,
+      version: "0.3.0",
+      elixir: "~> 1.3",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      source_url: "https://github.com/danielberkompas/destructure",
+      description: "Javascript-style destructuring for Elixir",
+      package: package(),
+      docs: docs(),
+      deps: deps()
+    ]
   end
 
   def application do
