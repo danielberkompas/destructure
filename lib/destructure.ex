@@ -5,10 +5,8 @@ defmodule Destructure do
   """
 
   @doc """
-  Easy destructuring of `map`, `structs`, and `keyword`, with atom keys only.
-  String keys are not supported because Elixir raises a `SyntaxError` on syntax
-  like `%{"name"}`. Optional key also need to be placed at the last for the same
-  reason with the string key.
+  Easy destructuring of `map`, `structs`, `keyword`, with atom keys.
+  String keys are supported via a special syntax `d(s%{param})`.
 
   ## Examples
 
@@ -42,6 +40,25 @@ defmodule Destructure do
       iex> d(%{first, last, email: mail}) = %{first: "Daniel", last: "Berkompas", email: "top@secret.com"}
       ...> {first, last, mail}
       {"Daniel", "Berkompas", "top@secret.com"}
+
+  For Maps with String Keys:
+
+      iex> s(%{name}) = %{"name" => "Daniel Berkompas"}
+      ...> name
+      "Daniel Berkompas"
+
+  With multiple keys:
+
+      iex> s(%{name, email}) = %{"name" => "Daniel Berkompas", "email" => "top@secret.com"}
+      ...> {name, email}
+      {"Daniel Berkompas", "top@secret.com"}
+
+  With multiple keys and custom variable naming:
+
+      iex> s(%{name, "email" => mail}) = %{"name" => "Daniel Berkompas", "email" => "top@secret.com"}
+      ...> {name, mail}
+      {"Daniel Berkompas", "top@secret.com"}
+
 
   For structs:
 
@@ -121,12 +138,26 @@ defmodule Destructure do
     Enum.map(list, &pattern/1)
   end
 
+  # Handle string maps, including ones with multiple keys
+  # {:%{}, [], [{:stuff, [], Elixir}, {:things, [], Elixir}]}
+  defmacro s({:%{}, context, args}) do
+    {:%{}, context, Enum.map(args, &s_pattern/1)}
+  end
+
+  defp s_pattern({key, _, _} = variable) do
+    {key |> Atom.to_string(), variable}
+  end
+
+  defp s_pattern(otherwise), do: pattern(otherwise)
+
   defp pattern({key, _, _} = variable) do
     {key, variable}
   end
+
   defp pattern([arg]) do
     arg
   end
+
   defp pattern(other) do
     other
   end
