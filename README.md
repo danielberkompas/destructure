@@ -1,6 +1,6 @@
 # Destructure
 [![Hex.pm](https://img.shields.io/hexpm/v/destructure.svg)](https://hex.pm/packages/destructure)
-[![Build Status](https://travis-ci.org/danielberkompas/destructure.svg?branch=master)](https://travis-ci.org/danielberkompas/destructure)
+[![Build Status](https://danielberkompas.semaphoreci.com/badges/destructure/branches/master.svg?style=shields)](https://danielberkompas.semaphoreci.com/projects/destructure)
 
 Adds Javascript-style destructuring to Elixir. When working with `map`, instead
 of writing match operation like this:
