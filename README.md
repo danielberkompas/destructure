@@ -2,7 +2,7 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/destructure.svg)](https://hex.pm/packages/destructure)
 [![Build Status](https://danielberkompas.semaphoreci.com/badges/destructure/branches/master.svg?style=shields)](https://danielberkompas.semaphoreci.com/projects/destructure)
 
-Adds Javascript-style destructuring to Elixir. When working with `map`, instead
+Adds Javascript-style destructuring to Elixir. When working with a `map`, instead
 of writing match operation like this:
 
 ```elixir
@@ -34,7 +34,7 @@ def full_name(d[first_name, last_name]) do
 end
 ```
 
-You can also do it in case statement.
+You can also do it in a case statement.
 
 ```elixir
 case post(url, data) do
